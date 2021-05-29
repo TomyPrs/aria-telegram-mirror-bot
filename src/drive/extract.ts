@@ -11,6 +11,7 @@ export function extract(srcPath: string, fileName: string, ext: string, callback
         fs.mkdirSync(dlDirPath, { recursive: true });
     }
 
+    /*
     if (ext === 'zip') {
         extractZip(srcPath, { dir: dlDirPath, defaultFileMode: 0o777, defaultDirMode: 0o777 }).then(() => {
             getSize(dlDirPath, (err, size) => {
@@ -25,7 +26,9 @@ export function extract(srcPath: string, fileName: string, ext: string, callback
                 }
             });
         }).catch(err => callback(err, null, null));
-    } else if (ext === 'rar') {
+    } else 
+    */
+    if (ext === 'rar') {
         unpackAll(
             srcPath,
             {
