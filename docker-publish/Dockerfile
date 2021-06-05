@@ -1,24 +1,24 @@
-#NodeJS Alpine Build
-FROM node:alpine3.10
-#Setting Work Directory
-WORKDIR /bot/
-# Setting Up All Permissions to all users to the Workdir
-RUN chmod 777 /bot
-#Installation of dependencies
-RUN apk add --no-cache --update \
-      ca-certificates \
+FROM node:latest
+
+ENV PATH /app/node_modules/.bin:$PATH
+RUN apt -qq update -y
+RUN  apt -qq install -y --no-install-recommends ca-certificates \
       git \
       bash \
       aria2 \
       wget \
       unzip \
-      curl
-# Copy all files from BuildDir to Workdir
+      curl \
+      sudo
+
 COPY . .
-#Building and Installation
-RUN mv src/.constants.js.example src/.constants.js && \
-    npm i -g typescript && \
+RUN npm i -g npm && npm install --force
+WORKDIR /app/
+ADD . /app/
+RUN mv /app/src/.constants.js.example /app/src/.constants.js && \
     yarn && \
-    tsc && \
-    rm -rf src/.constants.js && \
-    rm -rf out/.constants.js
+    npx tsc && \
+    rm -rf /app/src/.constants.js && \
+    rm -rf /app/out/.constants.js
+
+CMD ["bash"]

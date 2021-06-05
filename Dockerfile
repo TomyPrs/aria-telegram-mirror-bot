@@ -1,6 +1,6 @@
 #Base Image
-FROM ghcr.io/arghyac35/aria-telegram-mirror-bot:master
+FROM ghcr.io/tomyprs/aria-telegram-mirror-bot:master
 
-WORKDIR /bot/
+WORKDIR /app/
 
 CMD ["bash", "start.sh"]

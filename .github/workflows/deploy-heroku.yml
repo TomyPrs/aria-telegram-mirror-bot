@@ -1,27 +1,32 @@
-name: Manually Deploy to heroku
+name: Heroku Deploy
 
-on: workflow_dispatch
+on: workflow_dispatch # un-Nuke this if you no need auto triger
+#on: push # nuke this
 
+env:
+  IMAGE_NAME: ariajs
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  HEROKU_APP: ${{ secrets.HEROKU_APP }}
+  GIT_TOKEN: ${{secrets.GIT_TOKEN}}
+  CREDS_REPO: ${{secrets.CREDS_REPO}}
 jobs:
-  deploy:
+  build_and_push:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.8.9 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
-          region: "eu"
-          usedocker: true
-          docker_heroku_process_type: worker
-        env:
-          HD_CREDENTIALS: ${{secrets.CREDENTIALS}}
-          HD_CLIENT_SECRET: ${{secrets.CLIENT_SECRET}}
-          HD_CONSTANTS_URL: ${{secrets.CONSTANTS_URL}}
-          HD_MAX_CONCURRENT_DOWNLOADS: ${{secrets.MAX_CONCURRENT_DOWNLOADS}}
-          HD_GIT_TOKEN: ${{secrets.GIT_TOKEN}}
-          HD_GIT_USER: ${{secrets.GIT_USER}}
-          HD_GIT_REPO: ${{secrets.GIT_REPO}}
-          HD_HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-          HD_HEROKU_APP_NAME: ${{secrets.HEROKU_APP_NAME}} 
+
+      - name: Build the image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
+      - name: Login into Heroku Container registry
+        run: heroku container:login
+
+      - name: Push the image to Heroku
+        run: heroku container:push $IMAGE_NAME -a $HEROKU_APP
+
+      - name: Copy Github Repo Secret to Heroku Config Var
+        run: heroku config:set HEROKU_API_KEY=$HEROKU_API_KEY HEROKU_APP_NAME=$HEROKU_APP CREDS_REPO=$CREDS_REPO GIT_TOKEN=$GIT_TOKEN -a $HEROKU_APP
+
+      - name: Release image to Heroku
+        run: heroku container:release $IMAGE_NAME -a $HEROKU_APP
