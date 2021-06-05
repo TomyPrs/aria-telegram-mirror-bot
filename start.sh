@@ -16,7 +16,6 @@ if [[ -n $DYNO ]]; then
 		echo "Configuration all set"
 		rm -rf tmp/
 	else
-		echo "Missing Bot configuration. Exiting..."
 		exit 0
 	fi
 fi

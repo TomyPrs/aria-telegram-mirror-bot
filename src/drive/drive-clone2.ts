@@ -7,6 +7,7 @@ import msgTools = require('../bot_utils/msg-tools');
 import http = require('http');
 import dlUtils = require('../download_tools/utils');
 import { real_copy, copy_file } from './gd-utils';
+import { isDuplicateMirror } from './drive-list';
 
 
 export async function driveClone(fileId: string, bot: TelegramBot, cloneMsg: TelegramBot.Message) {
@@ -15,6 +16,14 @@ export async function driveClone(fileId: string, bot: TelegramBot, cloneMsg: Tel
             let message = `Cloning: <code>`;
             const drive = google.drive({ version: 'v3', auth });
             await drive.files.get({ fileId: fileId, fields: 'id, name, mimeType, size', supportsAllDrives: true }).then(async (meta) => {
+
+                // Check for duplicate mirror starts
+                const duplicate = await isDuplicateMirror(meta.data.name);
+                if (duplicate) {
+                    return resolve(`File(s) to be cloned already exists:\n\n${duplicate}`);
+                }
+                // Check for duplicate mirror ends
+
                 message += meta.data.name + `</code>`;
                 msgTools.editMessage(bot, cloneMsg, message);
                 // Check for folders
@@ -57,11 +66,11 @@ export async function driveClone(fileId: string, bot: TelegramBot, cloneMsg: Tel
                     // message += `\n\nRuko zara sabar karo...`;
                     // msgTools.editMessage(bot, cloneMsg, message);
                     //copy file
-                    await copy_file(meta.data.id, constants.GDRIVE_PARENT_DIR_ID).then((new_file: any) => {
+                    await copy_file(meta.data.id, constants.GDRIVE_PARENT_DIR_ID).then(async (new_file: any) => {
                         if (new_file) {
                             let msg: string;
                             message += `\n\nCopy is done getting shareable link...`;
-                            msgTools.editMessage(bot, cloneMsg, message);
+                            await msgTools.editMessage(bot, cloneMsg, message).catch(console.error);
                             gdrive.getSharableLink(new_file.id, false, (err, url) => {
                                 if (err) {
                                     reject('Error while getting shareablelink: ' + err);
