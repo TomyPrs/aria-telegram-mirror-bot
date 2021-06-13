@@ -1,7 +1,13 @@
-FROM node:latest
+FROM node:buster-slim
 
 ENV PATH /app/node_modules/.bin:$PATH
-RUN apt -qq update -y
+
+# Update all packages..
+RUN echo deb http://http.us.debian.org/debian \
+    stable main contrib non-free > /etc/apt/sources.list && \ 
+    apt -qq update -y && \
+    apt -qq upgrade -y && \
+    apt-get dist-upgrade -y
 RUN  apt -qq install -y --no-install-recommends ca-certificates \
       git \
       bash \
@@ -11,7 +17,7 @@ RUN  apt -qq install -y --no-install-recommends ca-certificates \
       curl \
       sudo \
       unrar
-# Copy all files from BuildDir to Workdir
+# Copy all files from BuildDir to Workdir>
 COPY . .
 RUN npm i -g npm && npm install --force
 WORKDIR /app/
