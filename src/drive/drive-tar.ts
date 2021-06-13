@@ -39,7 +39,6 @@ export async function driveDownloadAndTar(fileId: string, bot: TelegramBot, tarr
         startTime: 0,
         lastUploadCheckTimestamp: 0,
         isExtracting: false,
-        cmdString: '',
         extractedFileName: '',
         extractedFileSize: ''
     };

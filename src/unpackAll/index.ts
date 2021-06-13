@@ -38,8 +38,8 @@ export function unpackAll(archiveFile: any, options: any, callback: any) {
     // Assume Yes on all queries
     ar.push('-y');
 
-    // if options.password ? Set password : do not query password
-    (options.password) ? ar.push('-p'+ options.password ) : ar.push('-p-');
+    // Set password
+    if (options.password) ar.push('-p'+ options.password );
 
     // Archive file (source):
     ar.push('SOURCEFILE');
@@ -51,6 +51,8 @@ export function unpackAll(archiveFile: any, options: any, callback: any) {
     ar.push(targetDir + '/');
 
 
+    if (!options.quiet) log.info('command', quote.quote(ar));
+
     let cmd = quote.quote(ar).replace('SOURCEFILE', escapeFileName(archiveFile));
     if (!options.quiet) log.info('cmd', cmd);
 
@@ -58,12 +60,14 @@ export function unpackAll(archiveFile: any, options: any, callback: any) {
         if (err) return callback(err, null);
         if (stderr && stderr.length > 0) return callback('Error: ' + stderr, null);
         if (stdout && stdout.length > 0) {
-            if (stdout.indexOf('No files to extract') > -1) return callback('Error: No files to extract', null);
+            if (stdout.indexOf('No files extracted') > -1) return callback('Error: No files extracted', null);
         }
-        callback(null, targetDir, 'All Ok');
-    });
 
+        callback(null, targetDir, stdout);
+
+    });
 }
+
 
 function defaultListCallback(err: any, files: any, text: any) {
     if (err) return log.error('defaultListCallback', err);

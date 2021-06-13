@@ -688,8 +688,8 @@ function handleDisallowedFilename(dlDetails: details.DlVars, filename: string): 
 
 function prepDownload(msg: TelegramBot.Message, match: string, isTar: boolean, isUnZip: boolean): void {
   var dlDir = uuidv4();
-  ariaTools.addUri(match, dlDir, filename, (err, gid) => {
-    dlManager.addDownload(gid, dlDir, msg, match, isTar, isUnZip);
+  ariaTools.addUri(match, dlDir, (err, gid) => {
+    dlManager.addDownload(gid, dlDir, msg, isTar, isUnZip);
     if (err) {
       var message = `Failed to start the download. ${err.message}`;
       console.error(message);

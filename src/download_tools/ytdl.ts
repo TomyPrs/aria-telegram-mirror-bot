@@ -30,7 +30,6 @@ const dlDetails: DlVars = {
     startTime: 0,
     lastUploadCheckTimestamp: 0,
     isExtracting: false,
-    cmdString: '',
     extractedFileName: '',
     extractedFileSize: ''
 };
