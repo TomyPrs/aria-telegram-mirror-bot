@@ -11,20 +11,12 @@ export function extract(srcPath: string, fileName: string, ext: string, password
         fs.mkdirSync(dlDirPath, { recursive: true });
     }
 
-    /*
     if (ext === 'zip') {
         extractZip(srcPath, { dir: dlDirPath, defaultFileMode: 0o777, defaultDirMode: 0o777 }).then(() => {
             getsizeofFolder(dlDirPath, fileName, callback)
         }).catch(err => callback(err, null, null));
-<<<<<<< HEAD
-    } else 
-    */
-    if (ext === 'rar') {
-        unpackAll(
-=======
     } else if (ext === 'rar') {
         runUnrar(
->>>>>>> bf2731fe65736dbc421a9c49c96821eb7cdfe9ef
             srcPath,
             {
                 targetDir: dlDirPath,

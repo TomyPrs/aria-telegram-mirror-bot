@@ -1019,7 +1019,7 @@ function driveUploadCompleteCallback(err: string, gid: string, url: string, file
       var fileSizeStr = downloadUtils.formatSize(fileSize);
       finalMessage = `<b>GDrive Link</b>: <a href="${url}">${fileName}</a> (${fileSizeStr})`;
     } else {
-      finalMessage = `<b>GDrive Link</b>: <a href="${url}">${fileName}</a>`;
+      finalMessage = `<b>GDrive Link</b>: <a href='${url}'>${fileName}</a>`;
     }
 
     if (gdIndexLink && constants.INDEX_DOMAIN) {
