@@ -17,7 +17,10 @@ RUN  apt -qq install -y --no-install-recommends ca-certificates \
       curl \
       sudo \
       unrar
+
 # Copy all files from BuildDir to Workdir>
+
+# Copy all files from BuildDir to Workdir
 COPY . .
 RUN npm i -g npm && npm install --force
 WORKDIR /app/
