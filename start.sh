@@ -6,14 +6,14 @@ MAX_CONCURRENT_DOWNLOADS=15
 # Check if bot is deployed to heroku
 if [[ -n $DYNO ]]; then
 
-	if [[ -n $GIT_TOKEN && -n $CREDS_REPO ]]; then
-		echo "Usage of Service Accounts Detected, Clonning git"
-		git clone https://"$GIT_TOKEN"@"$CREDS_REPO" tmp/
-		mv -v tmp/accounts /app/accounts
-		mv -v tmp/credentials.json client_secret.json /app/
-		cp tmp/.constants.js /app/
-		cp tmp/.constants.js /app/out/.constants.js
-		echo "Configuration all set"
+    if [[ -n $CREDS_REPO ]]; then
+        echo "Creds repo Detected, Clonning.."
+        git clone $CREDS_REPO" tmp/
+        mv -v tmp/accounts /app/accounts
+        mv -v tmp/credentials.json client_secret.json /app/
+        cp tmp/.constants.js /app/
+        cp tmp/.constants.js /app/out/.constants.js
+        echo "Configuration all set"
 		rm -rf tmp/
 	else
 		exit 0
