@@ -26,22 +26,17 @@ if [[ -n $DYNO ]]; then
 
     if [[ -f $CREDS_JSON ]]; then
         echo "Credentials file detected.. Moving.."
-        mv -v tmp/credentials.json client_secret.json "$(pwd)"
+        mv -v tmp/client_secret.json "$(pwd)/client_secret.json"
     fi
 
     if [[ -f $CONST_FILE ]]; then
         echo "Bot configuration set.."
-        cp tmp/.constants.js "$pwd"
+        mv -v tmp/.constants.js "$(pwd)/out/.constants.js"
     else
         echo "Read heroku deploy properly.."
         exit 0
     fi
 
-    if [[ ! -f $CREDS_JSON && -f $SERVICE_ACC ]]; then
-        echo "one of them must exist"
-        exit 0
-        rm -rf "$TMP_DIR"
-    fi
     rm -rf $TMP_DIR; echo "Clearing $TMP_DIR"
 fi
 
