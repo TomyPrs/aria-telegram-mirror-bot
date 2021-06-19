@@ -30,8 +30,8 @@ if [[ -n $DYNO ]]; then
     fi
 
     if [[ -f $CONST_FILE ]]; then
+        echo "$(pwd)/ $(pwd)/out/" | xargs -n 1 cp -v "$TMP_DIR/.constants.js"
         echo "Bot configuration set.."
-        mv -v tmp/.constants.js "$(pwd)/out/.constants.js"
     else
         echo "Read heroku deploy properly.."
         exit 0
