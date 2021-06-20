@@ -21,7 +21,7 @@ if [[ -n $DYNO ]]; then
 
     if compgen -G $SERVICE_ACC > /dev/null; then
     echo "Service account Files exist"
-    cp -r "$TMP_DIR/accounts" "$(pwd)/accounts"
+    mv -v "$TMP_DIR/accounts" "$(pwd)/accounts"
     fi
 
     if [[ -f $CREDS_JSON ]]; then
@@ -37,7 +37,7 @@ if [[ -n $DYNO ]]; then
         exit 0
     fi
 
-    rm -rf $TMP_DIR; echo "Clearing $TMP_DIR"
+    rm -rf $TMP_DIR && echo "Clearing $TMP_DIR"
 fi
 
 if [[ -n $MAX_CONCURRENT_DOWNLOADS ]]; then
