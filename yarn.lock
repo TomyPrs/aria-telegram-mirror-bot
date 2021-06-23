@@ -1393,13 +1393,12 @@ gcp-metadata@^4.2.0:
     gaxios "^4.0.0"
     json-bigint "^1.0.0"
 
-get-folder-size@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/get-folder-size/-/get-folder-size-2.0.1.tgz"
-  integrity sha512-+CEb+GDCM7tkOS2wdMKTn9vU7DgnKUTuDlehkNJKNSovdCOVxs14OfKCk4cvSaR3za4gj+OBdl9opPN9xrJ0zA==
+get-folder-size@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/get-folder-size/-/get-folder-size-3.1.0.tgz#96d39f7e1a0b2e30d13958e05373ebfa32bdfaa4"
+  integrity sha512-/I7q+x1HCd22IXP4+kp2Wkz8+au7VfNwNyMfM4Z0gwaTMs+dJ1ShXUWDGSWXi+rDU59MI/j7NBP7+kd7zejnPw==
   dependencies:
     gar "^1.0.4"
-    tiny-each-async "2.0.3"
 
 get-stream@^4.1.0:
   version "4.1.0"
@@ -2880,11 +2879,6 @@ through@^2.3.8:
   version "2.3.8"
   resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
-
-tiny-each-async@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/tiny-each-async/-/tiny-each-async-2.0.3.tgz"
-  integrity sha1-jru/1tYpXxNwAD+7NxYq/loKUdE=
 
 tiny_request@latest:
   version "1.0.13"
