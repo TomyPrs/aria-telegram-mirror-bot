@@ -32,15 +32,15 @@
     "dayjs": "^1.10.5",
     "execution-time": "^1.4.1",
     "extract-zip": "^2.0.1",
-    "ffmpeg-static": "^4.2.8",
+    "ffmpeg-static": "^4.4.0",
     "fs-extra": "^10.0.0",
     "get-folder-size": "^2.0.1",
     "googleapis": "^76.0.0",
-    "gtoken": "^5.1.0",
+    "gtoken": "^5.3.0",
     "heroku-client": "^3.1.0",
     "http-range-parse": "^1.0.0",
     "inly": "^4.0.8",
-    "node-telegram-bot-api": "^0.52.0",
+    "node-telegram-bot-api": "^0.53.0",
     "nodemon": "^2.0.7",
     "npmlog": "^4.1.2",
     "p-limit": "^3.1.0",
@@ -60,6 +60,6 @@
     "@types/npmlog": "^4.1.2",
     "@typescript-eslint/eslint-plugin": "^1.12.0",
     "@typescript-eslint/parser": "^1.12.0",
-    "eslint": "^7.28.0"
+    "eslint": "^7.29.0"
   }
 }

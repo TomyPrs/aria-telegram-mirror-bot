@@ -1064,10 +1064,10 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-2.0.0.tgz"
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
-eslint@^7.28.0:
-  version "7.28.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.28.0.tgz#435aa17a0b82c13bb2be9d51408b617e49c1e820"
-  integrity sha512-UMfH0VSjP0G4p3EWirscJEQ/cHqnT/iuH6oNZOB94nBjWbMnhGEPxsZm1eyIW0C/9jLI0Fow4W5DXLjEI7mn1g==
+eslint@^7.29.0:
+  version "7.29.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.29.0.tgz#ee2a7648f2e729485e4d0bd6383ec1deabc8b3c0"
+  integrity sha512-82G/JToB9qIy/ArBzIWG9xvvwL3R86AlCjtGw+A29OMZDqhTybz/MByORSukGxeI+YPCR4coYyITKk8BFH9nDA==
   dependencies:
     "@babel/code-frame" "7.12.11"
     "@eslint/eslintrc" "^0.4.2"
@@ -1229,10 +1229,10 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-ffmpeg-static@^4.2.8:
-  version "4.3.0"
-  resolved "https://registry.npmjs.org/ffmpeg-static/-/ffmpeg-static-4.3.0.tgz"
-  integrity sha512-w/tXYGlOSeAkPHjypjzylaChLrG5wRzHFyB47KFRDsGyBxUJJWiq9I/39/e6r9Y4aY1gzpejTLg5Aa0aqb0XXA==
+ffmpeg-static@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.4.0.tgz#56f1fbff5dbfd33e368ce309333c8c12ffdafb77"
+  integrity sha512-NIJHVPXlSsIK9pYvsTPh4ZlppauorpPLLeOaIG7VOXWQck4Fx4Qi7Ahe+j8mj8KZXhWwCg3Hx46JdWAIOWLcpg==
   dependencies:
     "@derhuerst/http-basic" "^8.2.0"
     env-paths "^2.2.0"
@@ -1519,10 +1519,10 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.2:
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.4.tgz"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-gtoken@^5.0.4, gtoken@^5.1.0:
-  version "5.2.1"
-  resolved "https://registry.npmjs.org/gtoken/-/gtoken-5.2.1.tgz"
-  integrity sha512-OY0BfPKe3QnMsY9MzTHTSKn+Vl2l1CcLe6BwDEQj00mbbkl5nyQ/7EUREstg4fQNZ8iYE7br4JJ7TdKeDOPWmw==
+gtoken@^5.0.4, gtoken@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/gtoken/-/gtoken-5.3.0.tgz#6536eb2880d9829f0b9d78f756795d4d9064b217"
+  integrity sha512-mCcISYiaRZrJpfqOs0QWa6lfEM/C1V9ASkzFmuz43XBb5s1Vynh+CZy1ECeeJXVGx2PRByjYzb4Y4/zr1byr0w==
   dependencies:
     gaxios "^4.0.0"
     google-p12-pem "^3.0.3"
@@ -2128,10 +2128,10 @@ node-forge@^0.10.0:
   resolved "https://registry.npmjs.org/node-forge/-/node-forge-0.10.0.tgz"
   integrity sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA==
 
-node-telegram-bot-api@^0.52.0:
-  version "0.52.0"
-  resolved "https://registry.npmjs.org/node-telegram-bot-api/-/node-telegram-bot-api-0.52.0.tgz"
-  integrity sha512-HOOHJ14OcuAWcVZQb5kth2lrWJeeOdaO7XFdYXcJT9Dxpznm7iZDHBq9ODLknDTE4dhDMDL6TsjjgYV468gtDQ==
+node-telegram-bot-api@^0.53.0:
+  version "0.53.0"
+  resolved "https://registry.yarnpkg.com/node-telegram-bot-api/-/node-telegram-bot-api-0.53.0.tgz#130cbba6d47cbda03c87c059612ec3fa3495c715"
+  integrity sha512-UGNTYZWGs/h1ecyY/2w89skjZ1O3FXIZzrQaC0daMLVIOd0pxbpOiuO9pC2DZfvlZrrLm9cCfTBGN7m0fCWgSg==
   dependencies:
     array.prototype.findindex "^2.0.2"
     bl "^1.2.3"
