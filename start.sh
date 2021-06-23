@@ -2,9 +2,9 @@
 
 # To set a different value other than default(5), remove `#` from below line and replace the value
 MAX_CONCURRENT_DOWNLOADS=15
-SERVICE_ACC="$TMP_DIR/accounts/*.json"
-CONST_FILE="$TMP_DIR/.constants.js"
-CREDS_JSON="$TMP_DIR/client_secret.json"
+SERVICE_ACC="tmp/accounts/*.json"
+CONST_FILE="tmp/.constants.js"
+CREDS_JSON="tmp/client_secret.json"
 
 # Check if bot is deployed to heroku
 if [[ -n $DYNO ]]; then
@@ -20,12 +20,12 @@ if [[ -n $DYNO ]]; then
 
     if compgen -G $SERVICE_ACC > /dev/null; then
     echo "Service account Files exist"
-    cp -r tmp/accounts "$(pwd)/accounts"
+    cp -r tmp/accounts $(pwd)/accounts
     fi
 
     if [[ -f $CREDS_JSON ]]; then
         echo "Credentials file detected.. Moving.."
-        mv -v tmp/client_secret.json "$(pwd)/client_secret.json"
+        mv -v tmp/client_secret.json $(pwd)/client_secret.json
     fi
 
     if [[ -f $CONST_FILE ]]; then
@@ -40,13 +40,13 @@ if [[ -n $DYNO ]]; then
 fi
 
 if [[ -n $MAX_CONCURRENT_DOWNLOADS ]]; then
-	sed -i'' -e "/max-concurrent-downloads/d" "$(pwd)/aria.conf"
-	echo -e "max-concurrent-downloads=$MAX_CONCURRENT_DOWNLOADS" >> "$(pwd)/aria.conf"
+	sed -i'' -e "/max-concurrent-downloads/d" $(pwd)/aria.conf
+	echo -e "max-concurrent-downloads=$MAX_CONCURRENT_DOWNLOADS" >> $(pwd)/aria.conf
 fi
 
-sed -i'' -e "/bt-tracker=/d" "$(pwd)/aria.conf"
+sed -i'' -e "/bt-tracker=/d" $(pwd)/aria.conf
 tracker_list=`curl -Ns https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt | awk '$1' | tr '\n' ',' | cat`
-echo -e "bt-tracker=$tracker_list" >> "$(pwd)/aria.conf"
+echo -e "bt-tracker=$tracker_list" >> $(pwd)/aria.conf
 
 # Remove the .bak file got created from above sed
 test -f $(pwd)/aria.conf-e && rm $(pwd)/aria.conf-e
