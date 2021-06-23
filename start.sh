@@ -2,7 +2,6 @@
 
 # To set a different value other than default(5), remove `#` from below line and replace the value
 MAX_CONCURRENT_DOWNLOADS=15
-TMP_DIR=tmp
 SERVICE_ACC="$TMP_DIR/accounts/*.json"
 CONST_FILE="$TMP_DIR/.constants.js"
 CREDS_JSON="$TMP_DIR/client_secret.json"
@@ -12,16 +11,16 @@ if [[ -n $DYNO ]]; then
 
     if [[ -n $CREDS_REPO ]]; then
         echo "Creds repo Detected, Clonning.."
-        git clone "$CREDS_REPO" $TMP_DIR
+        git clone "$CREDS_REPO" tmp
     else
         echo "You need provided CREDS REPO in repo secret! exit.."
+        rm -rf tmp
         exit 0
-        rm -rf "$TMP_DIR"
     fi
 
     if compgen -G $SERVICE_ACC > /dev/null; then
     echo "Service account Files exist"
-    cp -r "$TMP_DIR/accounts" "$(pwd)/accounts"
+    cp -r tmp/accounts "$(pwd)/accounts"
     fi
 
     if [[ -f $CREDS_JSON ]]; then
@@ -30,14 +29,14 @@ if [[ -n $DYNO ]]; then
     fi
 
     if [[ -f $CONST_FILE ]]; then
-        echo "$(pwd)/ $(pwd)/out/" | xargs -n 1 cp -v "$TMP_DIR/.constants.js"
+        echo "$(pwd)/ $(pwd)/out/" | xargs -n 1 cp -v "tmp/.constants.js"
         echo "Bot configuration set.."
     else
         echo "Read heroku deploy properly.."
         exit 0
     fi
 
-    rm -rf $TMP_DIR; echo "Clearing $TMP_DIR"
+    rm -rf tmp; echo "Clearing tmp.."
 fi
 
 if [[ -n $MAX_CONCURRENT_DOWNLOADS ]]; then
